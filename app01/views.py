@@ -29,3 +29,22 @@ def user_tpl(request):
 
     return render(request, 'tpl.html',
     {"n1": name,"n2":roles,"n3":user_info,"n4":data_list})
+
+def news(request):
+    import requests
+    headers = {
+        'Accept-Encoding':'gzip, deflate',
+        'Connection':'keep-alive',
+        'Content-Type':'text/plain;charset=UTF-8',
+        'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
+    }
+    url = "http://www.chinaunicom.com.cn/api/article/NewsByIndex/2/2023/04/news"
+    res = requests.get(url=url,headers=headers)
+    data_list = res.json()
+
+    print(data_list)
+    return render(request,'news.html',{"news":data_list})
+
+def something(request):
+
+    return render(request,"something.html")

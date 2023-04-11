@@ -26,6 +26,10 @@ urlpatterns = [
 
     path('user/add',views.user_add),
 
-    path('user/tpl',views.user_tpl)
+    path('user/tpl',views.user_tpl),
+
+    path('news/',views.news),
+
+    path('something/',views.something)
 
 ]
