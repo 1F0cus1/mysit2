@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse,redirect
 
 
 # Create your views here.
@@ -6,15 +6,12 @@ from django.shortcuts import render, HttpResponse
 def index(request):
     return HttpResponse('欢迎使用')
 
-
 def user_list(request):
     # 去app目录下的templates目录寻找user_list.html
     return render(request, "user_list.html")
 
-
 def user_add(request):
     return render(request, 'user_add.html')
-
 
 def user_tpl(request):
     name = 'cyf1'
@@ -47,4 +44,23 @@ def news(request):
 
 def something(request):
 
-    return render(request,"something.html")
+    print(request.method)
+
+    print(request.GET)
+
+    # return HttpResponse('helloworld')
+    # return render(request,'something.html',{"title":"来了"})
+    return redirect('https://www.baidu.com')
+
+def login(request):
+
+    if request.method == 'GET':
+        return render(request,'login.html')
+
+    print(request.POST)
+    username = request.POST.get("user")
+    password = request.POST.get("pwd")
+    if username == 'root' and password == '123':
+        return redirect("http://www.chinaunicom.com.cn/index.html")
+
+    return render(request,'login.html',{"error_message":"账号密码错误！"})
