@@ -32,5 +32,10 @@ urlpatterns = [
 
     path('something/',views.something),
 
-    path('login/',views.login)
+    path('login/',views.login),
+
+    path('orm/',views.orm),
+
+    # 用户管理
+    path('info/list',views.info_list)
 ]

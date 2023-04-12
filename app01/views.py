@@ -64,3 +64,45 @@ def login(request):
         return redirect("http://www.chinaunicom.com.cn/index.html")
 
     return render(request,'login.html',{"error_message":"账号密码错误！"})
+
+from app01.models import Department,UserInfo
+def orm(request):
+    # 测试orm
+    # 1、新建
+    # Department.objects.create(title="销售部")
+    # Department.objects.create(title="IT部")
+    # Department.objects.create(title="运营部")
+
+    # 2、删除
+    # Department.objects.filter(id=3).delete()
+    # Department.objects.all().delete()  # 全部数据删除
+
+    # 3、获取数据
+    # data_liest = Department.objects.all()
+    # for obj in data_liest:
+    #     print(obj.id,obj.title)
+
+    # 3.1获取第一条数据
+    # data_list = Department.objects.filter(id=2).first()
+    # print(data_list.id,data_list.title)
+
+    # 4、更新
+    # data_list = Department.objects.filter(id=1).update(title='it部')
+    # print(data_list.id,data_list.title)
+
+    UserInfo.objects.create(name='cyf',password='123',age=23)
+    UserInfo.objects.create(name='cyf1',password='1234',age=24)
+    UserInfo.objects.create(name='cyf2',password='12345',age=25)
+    UserInfo.objects.create(name='cyf3',password='123456',age=26)
+
+    return HttpResponse("成功")
+
+
+from app01.models import UserInfo
+def info_list(request):
+
+    data_list = UserInfo.objects.all()
+    # for obj in data_list:
+    #     print(obj.name,obj.password,obj.age)
+
+    return render(request,'info_list.html',{"data":data_list})
