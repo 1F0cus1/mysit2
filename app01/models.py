@@ -17,7 +17,8 @@ class Role(models.Model):
         caption = models.CharField(max_length=16)
 
 # 表字段写入数据库
-# python manage.py makemigrations
+# python manage.py makemigrations --empty app01
+# 如果出现No changes detected 说明没注册则需要加入 --empty app01
 # python manage.py migrate
 
 # 新增数据 insert into

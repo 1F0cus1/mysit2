@@ -37,5 +37,12 @@ urlpatterns = [
     path('orm/',views.orm),
 
     # 用户管理
-    path('info/list',views.info_list)
+    path('info/list',views.info_list),
+
+    # 添加用户
+    path('add/list',views.add_list),
+
+    path('user/delete',views.user_delete),
+
+
 ]

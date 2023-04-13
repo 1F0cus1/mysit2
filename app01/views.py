@@ -106,3 +106,28 @@ def info_list(request):
     #     print(obj.name,obj.password,obj.age)
 
     return render(request,'info_list.html',{"data":data_list})
+
+# from app01.models import UserInfo
+def add_list(request):
+    if request.method == 'GET':
+        return render(request,'add_list.html')
+    username = request.POST.get("user")
+    password = request.POST.get("pwd")
+    age = request.POST.get("age")
+    name1 = UserInfo.objects.all()
+    list_name = []
+    for i in name1:
+        list_name.append(i.name)
+    if username in list_name:
+        return render(request,'error.html')
+
+    UserInfo.objects.create(name=username,password=password,age=age)
+    # data_list = UserInfo.objects.all()
+    # return render(request,'info_list.html',{"data":data_list})
+    # return redirect("/info/list")
+    return redirect("http://127.0.0.1:8000/info/list")
+
+def user_delete(request):
+    nid = request.GET.get('nid')
+    UserInfo.objects.filter(id=nid).delete()
+    return redirect('/info/list')
